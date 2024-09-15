@@ -3,11 +3,11 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.ZoneOffset;
 
 @Setter
 @Getter
@@ -35,14 +35,14 @@ public class Ticket implements Comparable<Ticket>{
     private int stops;
     private int price;
 
-    private long calculatesTheFlightTime (Ticket ticket) {
+    public long calculatesTheFlightTime (Ticket ticket) {
         String start = ticket.getDepartureDate().toString() + "T" + ticket.getDepartureTime().toString();
         String finish = ticket.getArrivalDate().toString() + "T" + ticket.getArrivalTime().toString();
 
         LocalDateTime startFlight = LocalDateTime.parse(start);
         LocalDateTime finishFlight = LocalDateTime.parse(finish);
 
-        return finishFlight.getSecond() - startFlight.getSecond();
+        return  finishFlight.toEpochSecond(ZoneOffset.of("Z")) - startFlight.toEpochSecond(ZoneOffset.of("Z"));
     }
 
     @Override
