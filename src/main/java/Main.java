@@ -59,7 +59,7 @@ public class Main {
         if (ticketPriceDifference < 0) {
             System.out.println("Средняя стоимость билетов меньше медианы на: " + Math.abs(ticketPriceDifference));
         } else if (ticketPriceDifference > 0) {
-            System.out.println("Средняя стоимость билетов меньше медианы на: " + ticketPriceDifference);
+            System.out.println("Средняя стоимость билетов больше медианы на: " + ticketPriceDifference);
         } else {
             System.out.println("Средняя стоимость билетов и медианы равна: " + ticketPriceDifference);
         }
