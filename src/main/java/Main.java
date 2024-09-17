@@ -1,26 +1,27 @@
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
     private static boolean workProgram = true;
-    private static String departureCity;
-    private static String destinationCity;
 
     public static void main(String[] args) {
         System.out.println("Добро пожаловать в программу поиска билетов!");
+        ParsingJsonFile parsingJsonFile = new ParsingJsonFile();
 
         while (workProgram) {
             System.out.println("Введите город вылета");
-            departureCity = new Scanner(System.in).nextLine();
+            String departureCity = new Scanner(System.in).nextLine();
             System.out.println("Введите город назначения");
-            destinationCity = new Scanner(System.in).nextLine();
-            SearchQuickFlight quickFlight = new SearchQuickFlight(departureCity, destinationCity);
-            if (quickFlight.sortsTicketsByCompany().isEmpty()) {
+            String destinationCity = new Scanner(System.in).nextLine();
+            List<Ticket> listOfAllTicketsAlongTheRoute = SearchQuickFlight.searchForAllTicketsAlongTheRoute(parsingJsonFile.getTicketList(), departureCity, destinationCity);
+            if (listOfAllTicketsAlongTheRoute.isEmpty()) {
                 System.out.println("По указанному маршруту вылетов не найдено!");
-            } else {calculateInformation(quickFlight);}
+            } else {
+                calculateInformation(SearchQuickFlight.createQuickTicketList(listOfAllTicketsAlongTheRoute));}
         }
     }
 
-    private static void calculateInformation (SearchQuickFlight quickFlight) {
+    private static void calculateInformation (List<Ticket> quickTicketsList) {
         boolean calculateInformation = true;
         while (calculateInformation) {
             System.out.println("Выберите действие:" + "\n"
@@ -31,14 +32,14 @@ public class Main {
                     + "\t" + "5 - Выход из программы." + "\n");
             int operationCode = new Scanner(System.in).nextInt();
             switch (operationCode) {
-                case 1 -> System.out.println(quickFlight.getQuickTicketsList() + "\n");
+                case 1 -> System.out.println(quickTicketsList + "\n");
                 case 2 -> {
-                    showsTicketPriseDifference();
+                    showsTicketPriseDifference(quickTicketsList);
                     System.out.println(" ");
                 }
                 case 3 ->{
-                    for (Ticket ticket : quickFlight.getQuickTicketsList()) {
-                        quickFlight.calculateFlightTime(ticket);
+                    for (Ticket ticket : quickTicketsList) {
+                        SearchQuickFlight.calculateFlightTime(ticket);
                     }
                 }
                 case 4 -> calculateInformation = false;
@@ -52,9 +53,8 @@ public class Main {
         }
     }
     
-    private static void showsTicketPriseDifference () {
-        CalculatingTheCostDifference costDifference = new CalculatingTheCostDifference(departureCity, destinationCity);
-        int ticketPriceDifference = costDifference.getTicketPriceDifference();
+    private static void showsTicketPriseDifference (List<Ticket> quickTicketsList) {
+        int ticketPriceDifference = CalculatingTheCostDifference.calculatesTicketPriceDifference(quickTicketsList);
 
         if (ticketPriceDifference < 0) {
             System.out.println("Средняя стоимость билетов меньше медианы на: " + Math.abs(ticketPriceDifference));

@@ -5,9 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.ZoneOffset;
 
 @Setter
 @Getter
@@ -35,16 +33,6 @@ public class Ticket implements Comparable<Ticket>{
     private int stops;
     private int price;
 
-    public long calculatesTheFlightTime (Ticket ticket) {
-        String start = ticket.getDepartureDate().toString() + "T" + ticket.getDepartureTime().toString();
-        String finish = ticket.getArrivalDate().toString() + "T" + ticket.getArrivalTime().toString();
-
-        LocalDateTime startFlight = LocalDateTime.parse(start);
-        LocalDateTime finishFlight = LocalDateTime.parse(finish);
-
-        return  finishFlight.toEpochSecond(ZoneOffset.of("Z")) - startFlight.toEpochSecond(ZoneOffset.of("Z"));
-    }
-
     @Override
     public String toString() {
         return "Ticket: " + "\n" +
@@ -63,6 +51,7 @@ public class Ticket implements Comparable<Ticket>{
 
     @Override
     public int compareTo(Ticket t) {
-        return (int)(calculatesTheFlightTime(this) - calculatesTheFlightTime(t));
+        return (int)(SearchQuickFlight.flightTimeOfEpochSecond(this)
+                - SearchQuickFlight.flightTimeOfEpochSecond(t));
     }
 }

@@ -8,7 +8,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/CalculatingTheCostDifference.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CalculatingTheCostDifference.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ParsingJsonFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ParsingJsonFile.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/SearchQuickFlight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SearchQuickFlight.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Ticket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Ticket.java" afterDir="false" />
     </list>
@@ -38,7 +37,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Application.Main.executor": "Run",
+    "Application.Main.executor": "Debug",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
