@@ -17,11 +17,12 @@ public class Main {
             if (listOfAllTicketsAlongTheRoute.isEmpty()) {
                 System.out.println("По указанному маршруту вылетов не найдено!");
             } else {
-                calculateInformation(SearchQuickFlight.createQuickTicketList(listOfAllTicketsAlongTheRoute));}
+                calculateInformation(listOfAllTicketsAlongTheRoute);}
         }
     }
 
-    private static void calculateInformation (List<Ticket> quickTicketsList) {
+    private static void calculateInformation (List<Ticket> listOfAllTicketsAlongTheRoute) {
+        List<Ticket> quickTicketsList = SearchQuickFlight.createQuickTicketList(listOfAllTicketsAlongTheRoute);
         boolean calculateInformation = true;
         while (calculateInformation) {
             System.out.println("Выберите действие:" + "\n"
@@ -34,7 +35,7 @@ public class Main {
             switch (operationCode) {
                 case 1 -> System.out.println(quickTicketsList + "\n");
                 case 2 -> {
-                    showsTicketPriseDifference(quickTicketsList);
+                    showsTicketPriseDifference(listOfAllTicketsAlongTheRoute);
                     System.out.println(" ");
                 }
                 case 3 ->{

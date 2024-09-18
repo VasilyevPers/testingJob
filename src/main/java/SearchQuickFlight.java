@@ -15,8 +15,6 @@ public class SearchQuickFlight {
         return sortedTicketsByCompany;
     }
 
-
-
     public static List<Ticket> createQuickTicketList (List<Ticket> listOfAllTicketsAlongTheRoute) {
         Map<String, List<Ticket>> sortedTicketsByCompany = new HashMap<>();
         List<Ticket> quickTicketsList = new ArrayList<>();
